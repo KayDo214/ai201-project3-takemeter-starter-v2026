@@ -39,8 +39,11 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
+For this project, I chose the public community r/soccer. After reading around
+30–40 posts, I noticed three main distinctions in the content: match clips and
+highlights, quotes or media/interview posts, and discussion or emotional posts
+about players, teams, and events. Match-related clips appeared to make up the
+largest portion of the posts I saw.
 
 
 
