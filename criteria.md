@@ -51,62 +51,33 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. **Overall accuracy:** The model should achieve at least 55% accuracy on the held-out test set.
 
-<!-- Your criterion. It must name a number. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** Random guessing with four labels would give roughly 25% accuracy, so I want the model to perform substantially better than chance. At the same time, this project uses a relatively small dataset, so I do not expect extremely high accuracy such as 90%. I chose 55% as a realistic but meaningful target.
 
 ---
 
-## 2.
+## 2. **Per-label performance:** Every label should achieve an F1 score of at least 0.50.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** Overall accuracy could hide poor performance on one of the labels, especially if some labels are easier or more common than others. I chose an F1 score of 0.50 because I want the model to show reasonable precision and recall for every label rather than performing well overall while mostly failing on one category. Since the dataset is relatively small and contains four labels, I think requiring a much higher F1 score for every label would be too ambitious.
 
 ---
 
-## 3.
+## 3. **Dataset balance:** No single label should make up more than 45% of the dataset.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** If one label makes up more than half of the dataset, the model could rely too heavily on predicting that label when it is uncertain. For example, if one label made up 60% of the dataset, the remaining three labels would have only about 13% each if distributed evenly. I chose 45% to keep the dataset reasonably balanced without requiring every label to have exactly the same number of examples.
 
 ---
 
-## 4.
+## 4. **Label consistency:** Another person using my taxonomy should agree with my labels on at least 80% of posts.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** My label definitions are intended to be clear and distinct from one another, so another person following the same definitions and decision rules should classify most posts the same way I do. I chose 80% because some posts will naturally sit near the boundary between two labels, but frequent disagreement would suggest that my taxonomy is too ambiguous.
 
 ---
 
-## 5.
+## 5. **High-confidence predictions:** When the model predicts with confidence above 0.70, at least 75% of those predictions should be correct.
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
+**Why this target:** If the model assigns a high confidence score to a prediction, I expect that prediction to be more reliable than its average prediction. I chose a confidence threshold of 0.70 and an accuracy target of 75% because the model should usually be correct when it is relatively confident, while still accounting for the small dataset and possible ambiguity between some labels.
 
 
 ---
