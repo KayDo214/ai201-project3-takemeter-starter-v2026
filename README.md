@@ -51,39 +51,60 @@ largest portion of the posts I saw.
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `match_clip`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
-
-**Definition:**
+**Definition:** A post primarily sharing footage or an alternate angle of a specific match event, such as a goal, skill, foul, save, or celebration.
 
 **Example 1:**
->
+>Alternative angle of Jota's fake
 
 **Example 2:**
->
+>Fan angle of Yamal’s Golazo against Real Betis
 
-### `label_two`
+### `news`
 
-**Definition:**
+**Definition:** A post whose main purpose is to report a football-related event, development, announcement, discovery, or other piece of news.
 
-**Example 1:**
->
+**Example 1:** 
+> A journalist uncovered three reports Barça scouts wrote about 13-year-old Messi. The first praised his technical ability, the second doubted his height would allow him to compete at the highest level, and the third compared him to Maradona and recommended signing him immediately.
+
+**Example 2:** 
+> Barcelona exceed €1 billion in revenue for 2025/26 – first time in history
+
+
+### `stats_or_fact`
+
+**Definition:** A post primarily presenting quantitative analysis, statistics, rankings, records, comparisons, or historical performance data about football.
+
+**Example 1:** 
+> Manchester United are winless in their last 6 games
+
+**Example 2:** 
+> [ThePopFoot] top 10 scorer in a season in the 21st century For Club & Country
+
+
+### `quote_interview`
+
+**Definition:** A post whose main purpose is to share what a person or organization said, including a direct quote, interview response, speech, or public statement, even if the statement itself contains an opinion.
+
+**Example 1:** 
+> [Oliver Holt] Strip Man City of ALL eight of their Premier League titles and relegate them
 
 **Example 2:**
->
+> “They’ve stolen memories from everyone else!” Steven Gerrard speaks about the memories he feels were taken away by Manchester City.
+
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `news` and `quote_interview`
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+
+If the main purpose of the post is to report an event, development, announcement, or piece of journalism, I classify it as `news`.
+
+If the main purpose of the post is to share what a person or organization said, such as a direct quote, interview response, speech, or statement, I classify it as `quote_interview`, even if the statement itself is opinionated.
+
+If a post contains both news and a quote, I classify it based on what the title mainly emphasizes.
 
 
 
