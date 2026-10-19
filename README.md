@@ -159,14 +159,19 @@ I manually labelled the first 20 posts without AI assistance and marked them as 
 
 **Base model:** `distilbert-base-uncased`
 
-**Settings:** 3 epochs, learning rate `2e-5`, batch size `16`, maximum sequence length `128`, and seed `42`.
+**Settings:** 3 epochs, learning rate `2e-5`, batch size `16`,
+maximum sequence length `128`, and seed `42`.
 
-**Anything I changed from the defaults, and why:** I kept the default training settings because this is my first training run and I wanted to evaluate the model using the provided baseline configuration before making any changes.
+**Anything I changed from the defaults, and why:** I kept the default
+training settings so that my first run used the provided baseline
+configuration.
 
-**Split sizes:** The notebook uses a stratified 70/15/15 split. With 200 examples, this gives 140 training examples, 30 validation examples, and 30 test examples.
+**Split sizes:** 139 training, 31 validation, and 30 test examples.
 
-**Per-label counts in the test split:**  
-Fill these in after running Section 3 of `takemeter.ipynb`, because the notebook prints the exact stratified counts.
+The test set contained 10 `match_clip`, 7 `news`, 6 `stats_or_fact`,
+and 7 `quote_interview` examples. Because three labels had fewer than
+8 examples in the test set, their individual F1 scores may vary
+noticeably across different random seeds.
 
 ---
 
