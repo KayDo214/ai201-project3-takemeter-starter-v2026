@@ -112,91 +112,79 @@ If a post contains both news and a quote, I classify it based on what the title 
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
-
 **Where the posts came from:**
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+The posts came from the public r/soccer subreddit. I collected post titles and text from public posts covering match clips, football news, statistics and records, and quotes or interviews. I did not include Reddit flair labels in the text because those could reveal the category to the model and create an artificial shortcut.
+
+**How I labelled them:**
+
+I manually labelled the first 20 posts without AI assistance and marked them as `cold`. For the remaining posts, I used AI to pre-label batches using my four-label taxonomy. I then read every post myself, checked the suggested label against my definitions, and corrected or removed examples when I disagreed or thought the post was too ambiguous. These rows are marked `AI pre-labeled, verified`.
 
 **Counts per label:**
 
 | Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+|---|---:|---:|
+| `match_clip` | 64 | 32.0% |
+| `news` | 48 | 24.0% |
+| `quote_interview` | 48 | 24.0% |
+| `stats_or_fact` | 40 | 20.0% |
+| **Total** | **200** | **100%** |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* Peter Schmeichel says Messi's goal shouldn't have stood because of a foul in the build up of the goal
 >
-> *Could have been:*
+> *Could have been:* `news` or `quote_interview`
 >
-> *I chose, because:*
+> *I chose, because:* I chose `quote_interview` because the main purpose of the post is to communicate Schmeichel's opinion. Even though the title uses reported speech instead of a direct quotation, the important information is still what Schmeichel said.
 
 **2.**
-> *The post:*
+> *The post:* FIFA World Cup 2026 Goal of the tournament nominees
 >
-> *Could have been:*
+> *Could have been:* `stats_or_fact` or `news`
 >
-> *I chose, because:*
+> *I chose, because:* I chose `news` because the post is announcing a new list of nominees rather than presenting statistics, rankings, records, or quantitative analysis.
 
 **3.**
-> *The post:*
+> *The post:* [Sami Mokbel] Enzo Maresca calls on Manchester City players to maintain focus and positivity in address to the squad upon their return to training following Premier League charges verdict.
 >
-> *Could have been:*
+> *Could have been:* `news` or `quote_interview`
 >
-> *I chose, because:*
+> *I chose, because:* I chose `news` because the title reports what Maresca did and what happened, but does not directly present his words as a quote or interview response.
 
 ---
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
+**Base model:** `distilbert-base-uncased`
 
-**Base model:**
+**Settings:** 3 epochs, learning rate `2e-5`, batch size `16`, maximum sequence length `128`, and seed `42`.
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Anything I changed from the defaults, and why:** I kept the default training settings because this is my first training run and I wanted to evaluate the model using the provided baseline configuration before making any changes.
 
-**Anything I changed from the defaults, and why:**
+**Split sizes:** The notebook uses a stratified 70/15/15 split. With 200 examples, this gives 140 training examples, 30 validation examples, and 30 test examples.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
-
-
+**Per-label counts in the test split:**  
+Fill these in after running Section 3 of `takemeter.ipynb`, because the notebook prints the exact stratified counts.
 
 ---
 
 ## How I Used AI
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked AI to help me stress-test my initial label definitions and identify places where the categories could overlap.
+- *What came back:* It pointed out possible overlap between categories such as `news`, `quote_interview`, and `stats_or_fact`, and gave examples of posts that could reasonably fit more than one label.
+- *What I changed:* I refined the taxonomy so that labels are based mainly on the purpose of the post. I narrowed `stats_or_fact` to statistics, records, rankings, comparisons, and quantitative information, and I created a specific decision rule for distinguishing `news` from `quote_interview`.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* After manually labelling the first 20 posts, I asked AI to collect public r/soccer posts and suggest labels for them using my taxonomy.
+- *What came back:* AI returned batches of posts with suggested labels such as `match_clip`, `news`, `stats_or_fact`, and `quote_interview`.
+- *What I changed:* I personally reviewed every suggested label. I changed classifications when I disagreed, removed examples that were too ambiguous, and used several difficult examples to test and clarify my decision rules. For example, I changed the World Cup Goal of the Tournament nominees post from `stats_or_fact` to `news`.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** After manually labelling the first 20 posts, I used AI to pre-label the remaining examples. I personally read and verified every AI-labelled post and corrected or removed labels when necessary.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
