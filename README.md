@@ -292,28 +292,6 @@ I think the set was relatively clear once I applied the staff decision rules car
 
 There were no disagreements in the staff set. This suggests that I was able to apply a written taxonomy consistently when the decision rules were explicit. Because the staff taxonomy is different from my own TakeMeter taxonomy, this does not prove that every label in my 200-post dataset was perfectly consistent, but it provides evidence that inconsistency in applying written rules was probably not the main cause of my model's unstable `news` performance.
 
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
-
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
-
-**What the pattern in my disagreements tells me:**
-
-
-
 ---
 
 ## The Improvement
@@ -322,23 +300,25 @@ I made one targeted improvement: I added 30 additional `news` examples to the la
 
 I chose this change because `news` was the weakest and least stable label across the three seeds. Its F1 scores were 0.000, 0.769, and 0.444, and the seed-42 confusion matrix showed that 5 of 7 real `news` posts were incorrectly classified as `match_clip`. At the same time, my 100% staff agreement score gave me little evidence that inconsistent application of written rules was the main problem.
 
-My hypothesis is that adding more varied `news` examples will give the model a clearer signal for the boundary between `news`, `match_clip`, and `quote_interview`, making `news` performance more stable across seeds.
+My hypothesis is that adding more varied `news` examples would give the model a clearer signal for the boundary between `news`, `match_clip`, and `quote_interview`, making `news` performance more stable across seeds.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.55 | 0.829 | 0.457 | 0.714 | MISSED |
+| 2. Every label F1 | ≥ 0.50 | MISSED (`stats_or_fact` = 0.286) | MISSED (`stats_or_fact` = 0.000, `quote_interview` = 0.000) | MISSED (`stats_or_fact` = 0.286) | MISSED |
+| 3. Dataset balance | No label > 45% | 33.9% max | 33.9% max | 33.9% max | MET |
+| 4. Label consistency | ≥ 80% agreement | 100% agreement | 100% agreement | 100% agreement | MET |
+| 5. Most-confident third accuracy | ≥ 75% | 1.000 | 0.909 | 1.000 | MET |
 
 **Did it help, and how do I know:**
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+The improvement helped the specific label I targeted, but it did not improve the model overall. Before adding the new examples, `news` had F1 scores of 0.000, 0.769, and 0.444. After the change, its F1 scores improved to 0.857, 0.558, and 0.706, so `news` exceeded the 0.50 target on all three seeds.
 
+However, performance on other labels became much worse. `stats_or_fact` dropped to F1 scores of 0.286, 0.000, and 0.286, and on seed 7 `quote_interview` also fell to 0.000. Overall accuracy on seed 7 dropped to 0.457. The confusion matrix showed that the model began predicting too many examples as `news`, including all six `stats_or_fact` examples and all seven `quote_interview` examples on seed 7.
+
+So the change partially helped: it fixed the original `news` weakness, but shifted the model too far toward predicting `news` and made the classifier less stable overall. This suggests the original problem was not simply a lack of `news` examples, but also overlapping class boundaries and sensitivity to the train/test split in a relatively small dataset.
 
 
 ---
