@@ -179,17 +179,23 @@ noticeably across different random seeds.
 
 **Moment 1**
 
-- *What I asked for:* I asked AI to help me stress-test my initial label definitions and identify places where the categories could overlap.
-- *What came back:* It pointed out possible overlap between categories such as `news`, `quote_interview`, and `stats_or_fact`, and gave examples of posts that could reasonably fit more than one label.
-- *What I changed:* I refined the taxonomy so that labels are based mainly on the purpose of the post. I narrowed `stats_or_fact` to statistics, records, rankings, comparisons, and quantitative information, and I created a specific decision rule for distinguishing `news` from `quote_interview`.
+- **What I asked for:** I asked AI to help me stress-test my initial label definitions and identify places where the categories could overlap.
+- **What came back:** It pointed out possible overlap between categories such as `news`, `quote_interview`, and `stats_or_fact`, and gave examples of posts that could reasonably fit more than one label.
+- **What I changed:** I refined the taxonomy so that labels are based mainly on the purpose of the post. I narrowed `stats_or_fact` to statistics, records, rankings, comparisons, and quantitative information, and I created a specific decision rule for distinguishing `news` from `quote_interview`.
 
 **Moment 2**
 
-- *What I asked for:* After manually labelling the first 20 posts, I asked AI to collect public r/soccer posts and suggest labels for them using my taxonomy.
-- *What came back:* AI returned batches of posts with suggested labels such as `match_clip`, `news`, `stats_or_fact`, and `quote_interview`.
-- *What I changed:* I personally reviewed every suggested label. I changed classifications when I disagreed, removed examples that were too ambiguous, and used several difficult examples to test and clarify my decision rules. For example, I changed the World Cup Goal of the Tournament nominees post from `stats_or_fact` to `news`.
+- **What I asked for:** After manually labeling the first 20 posts, I asked AI to collect public `r/soccer` posts and suggest labels for them using my taxonomy.
+- **What came back:** AI returned batches of posts with suggested labels such as `match_clip`, `news`, `stats_or_fact`, and `quote_interview`.
+- **What I changed:** I personally reviewed every suggested label. I changed classifications when I disagreed, removed examples that were too ambiguous, and used several difficult examples to test and clarify my decision rules. For example, I changed the World Cup Goal of the Tournament nominees post from `stats_or_fact` to `news`.
 
-**Pre-labelling disclosure:** After manually labelling the first 20 posts, I used AI to pre-label the remaining examples. I personally read and verified every AI-labelled post and corrected or removed labels when necessary.
+**Moment 3**
+
+- **What I asked for:** During Unit 6, I asked AI to help me compare the three-seed results, interpret the confusion matrices, and identify one improvement supported by the evidence.
+- **What came back:** AI pointed out that `news` was the least stable label before the change and that the seed-42 model frequently confused real `news` posts with `match_clip`. It suggested adding more examples for the weakest label as the most evidence-based single intervention.
+- **What I changed:** I added 30 new `news` examples and reran the same three seeds. Afterward, I used the new results to conclude that the change improved `news` F1 but hurt other labels and increased overall instability, so I reported the improvement as only partially successful rather than treating it as a success.
+
+**Pre-labeling disclosure:** After manually labeling the first 20 posts, I used AI to pre-label the remaining examples. I personally read and verified every AI-labeled post and corrected or removed labels when necessary.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
@@ -325,13 +331,13 @@ So the change partially helped: it fixed the original `news` weakness, but shift
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+Criterion 1 is still missed because overall accuracy fell below the 0.55 target on seed 7, where accuracy was 0.457. If I continued improving the project, I would focus on making the model less sensitive to the train/test split, likely by collecting more balanced examples across all four labels rather than strengthening only one class. I stopped because Milestone 5 required exactly one controlled change, and making another change would make it harder to tell which modification caused the result.
 
+Criterion 2 is also still missed because not every label reached an F1 score of at least 0.50. After adding more `news` examples, `news` improved, but `stats_or_fact` dropped to 0.286, 0.000, and 0.286 across the three seeds, and `quote_interview` fell to 0.000 on seed 7. If I continued, I would add more carefully selected examples for the weaker classes and inspect the cases being absorbed into `news`. I stopped because that would require a second intervention beyond the single improvement allowed in this milestone.
 
+**The gap between what I meant my labels to capture and what the model learned:**
 
-**The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
+I intended `news`, `stats_or_fact`, `match_clip`, and `quote_interview` to represent different primary purposes of a post, but the model sometimes learned surface-level wording instead of those deeper distinctions. The confusion matrices show this clearly: after adding more `news` examples, the model began treating many `stats_or_fact`, `match_clip`, and `quote_interview` posts as `news`, especially on seed 7.
 
 
 
