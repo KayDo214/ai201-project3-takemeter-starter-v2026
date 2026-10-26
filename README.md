@@ -250,27 +250,31 @@ The largest confusion was 5 real `news` posts being predicted as `match_clip`, w
 
 ## Verdicts and Diagnoses
 
-<!-- MET or MISSED against LAST UNIT's target. The target has to hold across
-     all three seeds, not turn up sometimes. -->
-
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | At least 0.55 | MET | Accuracy was 0.700, 0.867, and 0.800 across the three seeds, so all three runs exceeded the target. |
+| 2 | Every label F1 | At least 0.50 for every label | MISSED | `news` had F1 scores of 0.000, 0.769, and 0.444. Because the target had to hold across all three seeds, the criterion was missed. |
+| 3 | Dataset balance | No label above 45% | MET | The largest label was `match_clip` at 32.0%, so the dataset remained below the 45% limit. |
+| 4 | Label consistency | At least 80% agreement | MET | I agreed with the staff labels on all 30 posts, giving an agreement rate of 100%. |
+| 5 | High-confidence predictions | Predictions above 0.70 confidence should be at least 75% correct | NOT DIRECTLY MEASURABLE | The notebook reports accuracy for the most-confident third rather than accuracy specifically for predictions above a 0.70 confidence threshold. Because those are different measurements, I cannot give a valid verdict on the original criterion from the current output alone. |
 
-**Diagnoses**
+### Diagnoses
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
+**Criterion 2 — Every label F1**
 
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
+The main failure was `news`. Its F1 changed from 0.000 on seed 42 to 0.769 on seed 7 and 0.444 on seed 2024. This large spread shows that performance on `news` is highly sensitive to which examples land in the train and test splits.
+
+The seed-42 confusion matrix shows that 5 of the 7 real `news` posts were predicted as `match_clip`, while 2 were predicted as `quote_interview` and none were correctly predicted as `news`. This is a strongly directional error rather than random confusion.
+
+The agreement report does not show evidence of a general labeling-consistency problem, because I matched the staff labels on all 30 posts. Therefore, the strongest explanation is that `news` is a difficult label for this small dataset and that the model is sensitive to which `news` examples it sees during training. The small test support also contributes to instability because only 7 `news` posts were present in the seed-42 test split.
+
+**Criterion 5 — High-confidence predictions**
+
+The original criterion cannot be judged directly from the notebook's current confidence output. My criterion defined high confidence as a prediction with confidence greater than 0.70, but the notebook instead reports accuracy for the most-confident third and least-confident third of predictions. The seed-42 result showed 1.000 accuracy for the most-confident third and 0.400 for the least-confident third, which suggests confidence is meaningful, but it does not test the exact threshold I originally specified.
+
+> **Revised in unit 6:** The model's most-confident third of predictions should be at least 75% correct.
+>
+> **Why revised:** The original criterion used an absolute confidence threshold above 0.70, but the provided evaluation measures confidence by comparing ranked thirds rather than by applying a fixed threshold. The original criterion therefore could not be measured directly with the provided output.
 
 
 
