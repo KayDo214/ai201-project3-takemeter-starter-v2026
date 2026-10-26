@@ -1,0 +1,190 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.6666666666666666,
+    "f1_macro": 0.5670192307692308,
+    "per_label": {
+      "match_clip": {
+        "precision": 0.6,
+        "recall": 0.9,
+        "f1": 0.7200000000000001,
+        "support": 10
+      },
+      "news": {
+        "precision": 0.5555555555555556,
+        "recall": 0.7142857142857143,
+        "f1": 0.6250000000000001,
+        "support": 7
+      },
+      "quote_interview": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1": 0.923076923076923,
+        "support": 7
+      },
+      "stats_or_fact": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 6
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Mathys Tel freekick attempt",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Hansi Flick on the crisis at Madrid dressing room: \"It happens all over the world. Not just at Real Madrid. I was a little surprised, but I don\u2019t care, it\u2019s not my club. It\u2019s not my team.\"",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "Results so far on the U-17 Women's World Cup",
+      "gold": "stats_or_fact",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "France 0 - [2] Spain - Pedro Porro 58'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Alternative angle of Concei\u00e7\u00e3o receiving a second yellow card for giving the referee a thumbs up",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "\"The nightmare has become reality!\": a double blow for Barcelona before the Paris and Madrid clashes Eric Garcia out for 3-4 weeks & Jules Kounde to miss PSG clash",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "[ESPN] Carlo Ancelotti: \u201cIn Italy, they say that all men want to be coaches and all women architects. I take advice from everyone, but the only one who could really be the right person to give me advice is Alex Ferguson.\u201d",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "[CM Jornal] Correio da Manh\u00e3, a newspaper whose biggest individual shareholder is Cristiano Ronaldo, stalked 3 journalists/commentators who have been critical of Ronaldo, and took pictures of said 3 people, who are friends, after they had lunch together",
+      "gold": "news",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "United States Virgin Islands 3-0 Bahamas - Noah Armour 63'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Pablo Garc\u00eda and his mother were seen crying as they left Betis' stadium. He has been at Betis since he was 5 and was sold today to Racing Santander",
+      "gold": "news",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Ilya Zabarnyi after PSG's win against Strasbourg \"It\u2019s never easy for us to play in Ligue 1. Everyone says \u2018Farmers League\u2019 or something like that and makes jokes, but playing PSG in Ligue 1 is never easy. It was a difficult match. They were good, but we were better\"",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "Alternate angle of Dominik Szoboszlai's goal against Tottenham",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "French players with the highest goals and assists in the 21st century so far.",
+      "gold": "stats_or_fact",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Kylian Mbappe ends the season as the top scorer of World Cup, UCL and La Liga",
+      "gold": "stats_or_fact",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "FIFA latest men's world ranking updated to 7th of October 2026",
+      "gold": "stats_or_fact",
+      "predicted": "news"
+    },
+    {
+      "text": "OFFICIAL : Sean Dyche sacked as Nottingham Forest manager",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Peter Schmeichel says Messi's goal shouldn't have stood because of a foul in the build up of the goal",
+      "gold": "quote_interview",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Mikel Arteta signs new Arsenal contract",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Rafael Le\u00e3o is the new #7 for Portugal and will wear the new number tonight",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Liberia 0-1 Mali - Martial Tia 79'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Gabon 2-0 Niger - Denis Bouanga 77'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "Mourinho seemingly throws shade at Guardiola: \"Some need a sabbatical year, for me that's being weak\"",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "[Squawka]: Spain are the first men's side in International football history to go 40 consecutive games unbeaten. And they've won EURO 2024 and the 2026 World Cup during that time.",
+      "gold": "stats_or_fact",
+      "predicted": "news"
+    },
+    {
+      "text": "Argentina [1] - 0 Cape Verde - Lionel Messi 29'",
+      "gold": "match_clip",
+      "predicted": "news"
+    },
+    {
+      "text": "Vozinha save against Lionel Messi 63'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    },
+    {
+      "text": "[Official] Arsenal crowned 2025/26 Premier League Champions.",
+      "gold": "news",
+      "predicted": "news"
+    },
+    {
+      "text": "Ancelotti on his time at Bayern: \"Whenever things got heated, I noticed a big difference in this job. There was a group of shareholders, while legendary former players held sway at the management level. So I had to report to several important people, it was difficult to see who had more power.\"",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "2026 FIFA World Cup breaks the all-time total attendance record, surpassing the 1994 tournament",
+      "gold": "stats_or_fact",
+      "predicted": "news"
+    },
+    {
+      "text": "Benin\u2019s head coach Gernot Rohr: \u201cThe Argentinians didn\u2019t give our players anything, not even a photo with Messi. Players were coming with their shirts hoping to swap them with Argentina players.\u201d",
+      "gold": "quote_interview",
+      "predicted": "quote_interview"
+    },
+    {
+      "text": "Ireland [1] - 0 Austria - Troy Parrott 12'",
+      "gold": "match_clip",
+      "predicted": "match_clip"
+    }
+  ]
+}

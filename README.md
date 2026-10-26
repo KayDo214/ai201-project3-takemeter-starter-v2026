@@ -200,23 +200,20 @@ noticeably across different random seeds.
 
 ## Baseline vs. Trained
 
-<!-- Both models on the same posts. `python baseline.py --trained results.json`
-     prints this table for you. -->
-
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.667 | 0.700 | +0.033 |
+| Macro F1 | 0.567 | 0.620 | +0.053 |
+| F1 — `match_clip` | 0.720 | 0.769 | +0.049 |
+| F1 — `news` | 0.625 | 0.000 | -0.625 |
+| F1 — `quote_interview` | 0.923 | 0.800 | -0.123 |
+| F1 — `stats_or_fact` | 0.000 | 0.909 | +0.909 |
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+I expect my trained model to outperform the baseline overall, particularly on `match_clip` and `stats_or_fact`, because those categories have strong recurring patterns in my labeled dataset. I am less confident about `news`, since my trained model performed poorly on that label in the initial test run.
 
 **What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
+The trained model slightly outperformed the zero-shot baseline overall, with 0.700 accuracy compared with 0.667 and a macro F1 of 0.620 compared with 0.567. However, the per-label results show that the improvement was not consistent across categories. Fine-tuning greatly improved `stats_or_fact`, where the trained model reached an F1 of 0.909 while the baseline scored 0.000. In contrast, the baseline performed much better on `news`, with an F1 of 0.625 compared with 0.000 for the trained model. This suggests that fine-tuning helped the model learn some task-specific patterns very well, but it may also have learned an unstable or misleading boundary for `news`.
 
 
 
