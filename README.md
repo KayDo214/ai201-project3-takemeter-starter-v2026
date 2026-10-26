@@ -318,9 +318,11 @@ There were no disagreements in the staff set. This suggests that I was able to a
 
 ## The Improvement
 
-**What I changed:**
+I made one targeted improvement: I added 30 additional `news` examples to the labeled dataset.
 
-**Which diagnosis pointed at it:**
+I chose this change because `news` was the weakest and least stable label across the three seeds. Its F1 scores were 0.000, 0.769, and 0.444, and the seed-42 confusion matrix showed that 5 of 7 real `news` posts were incorrectly classified as `match_clip`. At the same time, my 100% staff agreement score gave me little evidence that inconsistent application of written rules was the main problem.
+
+My hypothesis is that adding more varied `news` examples will give the model a clearer signal for the boundary between `news`, `match_clip`, and `quote_interview`, making `news` performance more stable across seeds.
 
 ### Run Log — After
 
