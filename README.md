@@ -278,33 +278,15 @@ The largest confusion was 5 real `news` posts being predicted as `match_clip`, w
 
 ## Agreement Report
 
-<!-- Your rate against the staff set, and every disagreement adjudicated.
+**Agreement rate:** 30 / 30 = 100%
 
-     Remember you labelled these 30 under the STAFF taxonomy in
-     data/staff_taxonomy.md, not your own — so every argument below is made
-     from those definitions and those decision rules. -->
+I matched the staff labels on all 30 posts, so there were no disagreements to adjudicate.
 
-**Agreement rate:** ___ / 30 = ___%
+I think the set was relatively clear once I applied the staff decision rules carefully. The most important distinction was whether a specific fact actually carried the argument for `analysis`, rather than simply appearing inside a strong claim. The `reaction` examples were also fairly distinct because they focused on something that had just happened to the writer and their immediate response.
 
-<!-- Nobody grades this number. A 60% who argues every disagreement from the
-     stated rules beats a 95% who wrote "staff was right" nine times. Several
-     of the 30 were chosen because they're genuinely ambiguous — you should be
-     winning some of these. -->
+**What the pattern in my disagreements tells me:**
 
-**Disagreements**
-
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
-
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
-
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
+There were no disagreements in the staff set. This suggests that I was able to apply a written taxonomy consistently when the decision rules were explicit. Because the staff taxonomy is different from my own TakeMeter taxonomy, this does not prove that every label in my 200-post dataset was perfectly consistent, but it provides evidence that inconsistency in applying written rules was probably not the main cause of my model's unstable `news` performance.
 
 **1.**
 > *The post:*
