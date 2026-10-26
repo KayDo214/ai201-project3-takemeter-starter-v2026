@@ -226,28 +226,24 @@ The trained model slightly outperformed the zero-shot baseline overall, with 0.7
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.55 | 0.700 | 0.867 | 0.800 | MET |
+| 2. Every label F1 | ≥ 0.50 | MISSED (`news` = 0.000) | MET | MISSED (`news` = 0.444) | MISSED |
+| 3. Dataset balance | No label > 45% | 32.0% max | 32.0% max | 32.0% max | MET |
+| 4. Label consistency | ≥ 80% agreement | Not tested yet | Not tested yet | Not tested yet | Pending |
+| 5. High-confidence predictions | >0.70 confidence → ≥75% correct | Not fully tested yet | Not fully tested yet | Not fully tested yet | Pending |
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
-
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | match_clip | news | stats_or_fact | quote_interview |
+|---|---:|---:|---:|---:|
+| **match_clip** | 10 | 0 | 0 | 0 |
+| **news** | 5 | 0 | 0 | 2 |
+| **stats_or_fact** | 0 | 1 | 5 | 0 |
+| **quote_interview** | 1 | 0 | 0 | 6 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
 
+The largest confusion was 5 real `news` posts being predicted as `match_clip`, while no real `match_clip` posts were predicted as `news`. This shows a strongly directional confusion: on this split, the model tended to absorb some `news` examples into `match_clip` rather than confusing the two labels equally.
 
 
 ---
